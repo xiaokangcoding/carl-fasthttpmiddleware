@@ -26,7 +26,7 @@ func panicHandler(ctx *fasthttp.RequestCtx) {
 
 func main() {
 	logger := zaplog.NewNoCallerLogger(false)
-	mo := fasthttpmiddleware.NewNormalMiddlewareOnion(exampleAuthFunc, true,logger)
+	mo := fasthttpmiddleware.NewNormalMiddlewareOnion(exampleAuthFunc, false,logger)
 	//moWithoutAuth := fasthttpmiddleware.NewMiddlewareOnion(
 	//	fasthttpmiddleware.NewLogMiddleware(logger, false),
 	//	fasthttpmiddleware.NewRecoverMiddleware(logger),
