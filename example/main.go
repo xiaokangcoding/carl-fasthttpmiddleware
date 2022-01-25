@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"github.com/buaazp/fasthttprouter"
 	"github.com/valyala/fasthttp"
 )
@@ -34,7 +35,8 @@ func main() {
 	//router.GET("/protect", mo.Apply(requestHandler))
 	//router.GET("/panic", mo.Apply(panicHandler))
 	//router.GET("/noAuth", moWithoutAuth.Apply(requestHandler))
-
+	fmt.Println("0000")
 	fasthttp.ListenAndServe(":8000", router.Handler)
+	fmt.Println("aaaaa")
 
 }
