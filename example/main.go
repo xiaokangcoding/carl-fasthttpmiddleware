@@ -26,15 +26,15 @@ func panicHandler(ctx *fasthttp.RequestCtx) {
 
 func main() {
 	logger := zaplog.NewNoCallerLogger(false)
-	mo := fasthttpmiddleware.NewNormalMiddlewareOnion(exampleAuthFunc, false,logger)
+	mo := fasthttpmiddleware.NewNormalMiddlewareOnion(exampleAuthFunc, true,logger)
 	//moWithoutAuth := fasthttpmiddleware.NewMiddlewareOnion(
 	//	fasthttpmiddleware.NewLogMiddleware(logger, false),
 	//	fasthttpmiddleware.NewRecoverMiddleware(logger),
 	//	//fasthttpmiddleware.
 	//)
 	router := fasthttprouter.New()
-	router.GET("/", mo.Apply(requestHandler))
-	//router.GET("/protect", mo.Apply(requestHandler))
+	//router.GET("/", mo.Apply(requestHandler))
+	router.GET("/protect", mo.Apply(requestHandler))
 	//router.GET("/panic", mo.Apply(panicHandler))
 	//router.GET("/noAuth", moWithoutAuth.Apply(requestHandler))
 	err:=fasthttp.ListenAndServe(":8888", router.Handler)
