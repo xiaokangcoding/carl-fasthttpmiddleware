@@ -36,7 +36,11 @@ func main() {
 	//router.GET("/panic", mo.Apply(panicHandler))
 	//router.GET("/noAuth", moWithoutAuth.Apply(requestHandler))
 	fmt.Println("0000")
-	fasthttp.ListenAndServe(":8000", router.Handler)
+	err:=fasthttp.ListenAndServe(":8000", router.Handler)
+	if err!=nil{
+		fmt.Println("err:==",err)
+		return
+	}
 	fmt.Println("aaaaa")
 
 }
